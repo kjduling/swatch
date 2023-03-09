@@ -50,9 +50,8 @@ class App {
       engine.resize();
     });
 
-    // hide/show the Inspector
     window.addEventListener("keydown", (ev) => {
-      // Shift+Ctrl+Alt+I
+      // Shift+Ctrl+Alt+I to show/hide the Inspector
       // keyCode 73 = I, need to use this because ev.key === "I" doesn't work on a Mac
       if (ev.shiftKey && ev.ctrlKey && ev.altKey && ev.keyCode === 73) {
         if (scene.debugLayer.isVisible()) {
@@ -60,6 +59,11 @@ class App {
         } else {
           scene.debugLayer.show();
         }
+      }
+
+      // Ctrl-Shift-F to toggle fullscreen
+      if (ev.shiftKey && ev.ctrlKey && ev.keyCode === 70) {
+        engine.switchFullscreen(false);
       }
     });
 
