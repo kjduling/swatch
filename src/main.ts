@@ -23,7 +23,7 @@ class App {
     camera.attachControl(canvas, true);
     var light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
 
-    var ground: Mesh = MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
+    var ground: Mesh = MeshBuilder.CreateGround("ground", { width: 100, height: 100 }, scene);
 
     camera.setTarget(sphere.position);
     camera.wheelPrecision = 100;
@@ -38,7 +38,7 @@ class App {
     camera.panningSensibility = 0; // disable panning
     camera.useBouncingBehavior = true; // bounce when reaching camera scrolling limits
     camera.useAutoRotationBehavior = true; // auto rotate after timeout
-    camera.autoRotationBehavior.idleRotationSpeed = 0.1; // radians per second
+    camera.autoRotationBehavior.idleRotationSpeed = 0.05; // radians per second
     camera.autoRotationBehavior.idleRotationWaitTime = 60000; // milliseconds
     camera.autoRotationBehavior.idleRotationSpinupTime = 4000; // milliseconds
     camera.autoRotationBehavior.zoomStopsAnimation = true;
