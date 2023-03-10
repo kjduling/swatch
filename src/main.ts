@@ -26,13 +26,13 @@ class App {
     var ground: Mesh = MeshBuilder.CreateGround("ground", { width: 100, height: 100 }, scene);
 
     camera.setTarget(sphere.position);
-    camera.wheelPrecision = 100;
+    camera.wheelPrecision = 10;
     camera.minZ = 0.3;
     camera.collisionRadius = new Vector3(0.5, 0.5, 0.5);
     camera.lowerRadiusLimit = 2;
     camera.upperRadiusLimit = 20;
-    // camera.lowerBetaLimit = Math.PI / 2;
-    // camera.upperBetaLimit = Math.PI / 4;
+    // camera.lowerBetaLimit = 1.4;
+    camera.upperBetaLimit = 1.67;
     console.log("lower beta", camera.lowerBetaLimit);
     console.log("upper beta", camera.upperBetaLimit);
     camera.panningSensibility = 0; // disable panning
@@ -42,9 +42,9 @@ class App {
     camera.autoRotationBehavior.idleRotationWaitTime = 60000; // milliseconds
     camera.autoRotationBehavior.idleRotationSpinupTime = 4000; // milliseconds
     camera.autoRotationBehavior.zoomStopsAnimation = true;
-    camera.useFramingBehavior = true; // frame in on the bounds of the object
-    camera.framingBehavior.radiusScale = 10; // zoom out a bit - works with camera radius
-    camera.framingBehavior.framingTime = 1000; // milliseconds
+    // camera.useFramingBehavior = true; // frame in on the bounds of the object
+    // camera.framingBehavior.radiusScale = 10; // zoom out a bit - works with camera radius
+    // camera.framingBehavior.framingTime = 1000; // milliseconds
 
     window.addEventListener("resize", () => {
       engine.resize();
