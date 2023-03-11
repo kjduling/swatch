@@ -1,7 +1,7 @@
 import "@babylonjs/core/Debug/debugLayer";
 import "@babylonjs/inspector";
 import "@babylonjs/loaders/glTF";
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, ArcFollowCamera } from "@babylonjs/core";
+import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, ArcFollowCamera, ICameraInput } from "@babylonjs/core";
 
 class App {
   constructor() {
@@ -20,22 +20,20 @@ class App {
     sphere.position.y = 0.5;
 
     var camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 3, 5, sphere.position, scene);
-    camera.attachControl(canvas, true);
+    camera.attachControl(true, false, 0); // attach the camera to the canvas and set panning to button to the left mouse button
     var light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
 
     var ground: Mesh = MeshBuilder.CreateGround("ground", { width: 100, height: 100 }, scene);
-
     camera.setTarget(sphere.position);
     camera.wheelPrecision = 10;
     camera.minZ = 0.3;
     camera.collisionRadius = new Vector3(0.5, 0.5, 0.5);
     camera.lowerRadiusLimit = 2;
     camera.upperRadiusLimit = 20;
+
     // camera.lowerBetaLimit = 1.4;
     camera.upperBetaLimit = 1.67;
-    console.log("lower beta", camera.lowerBetaLimit);
-    console.log("upper beta", camera.upperBetaLimit);
-    camera.panningSensibility = 0; // disable panning
+    camera.panningSensibility = 1000000; // disable panning by setting this to a very high value
     camera.useBouncingBehavior = true; // bounce when reaching camera scrolling limits
     camera.useAutoRotationBehavior = true; // auto rotate after timeout
     camera.autoRotationBehavior.idleRotationSpeed = 0.05; // radians per second
